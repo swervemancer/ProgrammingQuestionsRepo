@@ -22,7 +22,7 @@ public class Day1 extends AoCPuzzle{
         for (int i = 1; i < puzzleInput.size(); i++) {
             if (puzzleInput.get(i) > puzzleInput.get(i - 1)) increases++;
         }
-        System.out.println("Part 1 Answer: " + increases);
+        System.out.println("Day 1 Part 1 Answer: " + increases);
 
         /* PART 2 */
         increases = 0;
@@ -33,7 +33,7 @@ public class Day1 extends AoCPuzzle{
             3 elements is necessary for calculating the first sum.
          */
         for (int i = 3; i < puzzleInput.size(); i++) increases += puzzleInput.get(i) > puzzleInput.get(i - 3) ? 1 : 0;
-        System.out.println("Part 2 Answer: " + increases);
+        System.out.println("Day 1 Part 2 Answer: " + increases);
     }
 
     @Override
