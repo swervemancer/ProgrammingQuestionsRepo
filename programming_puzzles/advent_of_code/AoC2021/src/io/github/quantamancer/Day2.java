@@ -5,11 +5,11 @@ import java.util.List;
 public class Day2 extends AoCPuzzle{
 
     public Day2() {
-        super("2", "String");
+        super("2");
     }
 
     @Override
-    void solvePuzzleWithString(List<String> puzzleInput) {
+    void solvePuzzle(List<String> puzzleInput) {
 
         /* PART 1 */
 
@@ -55,10 +55,4 @@ public class Day2 extends AoCPuzzle{
         System.out.println("Day 2 Part 2 Solution: " + sum);
 
     }
-
-    @Override
-    void solvePuzzleWithIntegers(List<Integer> puzzleInput) {}
-
-    @Override
-    void solvePuzzleWithLongs(List<Long> puzzleInput) {}
 }

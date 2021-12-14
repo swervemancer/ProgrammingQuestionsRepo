@@ -10,7 +10,7 @@ import java.util.List;
 
 public abstract class AoCPuzzle {
 
-    public AoCPuzzle(String day, String dataType) {
+    public AoCPuzzle(String day) {
         File file = new File("res/day" + day + ".txt");
         if(!file.exists()) {
             System.err.println("File doesn't exist!");
@@ -25,41 +25,17 @@ public abstract class AoCPuzzle {
             System.err.println("File not found!");
             return;
         }
-
-        if (dataType == "Number") {
-            List<Integer> puzzleInputs = new ArrayList<>();
-            try {
-                String line;
-                while ((line = reader.readLine()) != null) puzzleInputs.add(Integer.parseInt(line));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            solvePuzzleWithIntegers(puzzleInputs);
+        List<String> puzzleInputs = new ArrayList<>();
+        try {
+            String line;
+            while ((line = reader.readLine()) != null) puzzleInputs.add(line);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        else if (dataType == "String"){
-            List<String> puzzleInputs = new ArrayList<>();
-            try {
-                String line;
-                while ((line = reader.readLine()) != null) puzzleInputs.add(line);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            solvePuzzleWithString(puzzleInputs);
-        } else if (dataType == "Long") {
-            List<Long> puzzleInputs = new ArrayList<>();
-            try {
-                String line;
-                while ((line = reader.readLine()) != null) puzzleInputs.add(Long.parseLong(line));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            solvePuzzleWithLongs(puzzleInputs);
-        }
+        solvePuzzle(puzzleInputs);
 
     }
 
-    abstract void solvePuzzleWithString(List<String> puzzleInput);
-    abstract void solvePuzzleWithIntegers(List<Integer> puzzleInput);
-    abstract void solvePuzzleWithLongs(List<Long> puzzleInput);
+    abstract void solvePuzzle(List<String> puzzleInput);
 
 }

@@ -5,11 +5,11 @@ import java.util.List;
 public class Day1 extends AoCPuzzle{
 
     public Day1() {
-        super("1", "Number");
+        super("1");
     }
 
     @Override
-    void solvePuzzleWithIntegers(List<Integer> puzzleInput) {
+    void solvePuzzle(List<String> puzzleInput) {
 
         /* PART 1 */
         int increases = 0;
@@ -20,7 +20,9 @@ public class Day1 extends AoCPuzzle{
             since we can assume the element at index 0 is always no change.
          */
         for (int i = 1; i < puzzleInput.size(); i++) {
-            if (puzzleInput.get(i) > puzzleInput.get(i - 1)) increases++;
+            int a = Integer.parseInt(puzzleInput.get(i));
+            int b = Integer.parseInt(puzzleInput.get(i - 1));
+            if (a > b) increases++;
         }
         System.out.println("Day 1 Part 1 Answer: " + increases);
 
@@ -32,13 +34,11 @@ public class Day1 extends AoCPuzzle{
             element of the current one. The loop var i starts at 3 since access to the
             3 elements is necessary for calculating the first sum.
          */
-        for (int i = 3; i < puzzleInput.size(); i++) increases += puzzleInput.get(i) > puzzleInput.get(i - 3) ? 1 : 0;
+        for (int i = 3; i < puzzleInput.size(); i++) {
+            int a = Integer.parseInt(puzzleInput.get(i));
+            int b = Integer.parseInt(puzzleInput.get(i - 3));
+            increases += a > b ? 1 : 0;
+        }
         System.out.println("Day 1 Part 2 Answer: " + increases);
     }
-
-    @Override
-    void solvePuzzleWithString(List<String> puzzleInput) {}
-
-    @Override
-    void solvePuzzleWithLongs(List<Long> puzzleInput) {}
 }
