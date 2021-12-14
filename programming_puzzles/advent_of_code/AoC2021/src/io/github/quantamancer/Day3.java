@@ -12,6 +12,7 @@ public class Day3 extends AoCPuzzle{
 
     @Override
     void solvePuzzle(List<String> puzzleInput) {
+
         /* PART 1 */
         int[] zeros = new int[puzzleInput.get(0).length()];
         int[] ones = new int[puzzleInput.get(0).length()];
@@ -37,50 +38,58 @@ public class Day3 extends AoCPuzzle{
         System.out.println("Day 3 Part 1: " + sum);
 
         /* PART 2 */
-        List<String> oxygen = new ArrayList<>(puzzleInput);
-        List<String> co2 = new ArrayList<>(puzzleInput);
+        //PART 2
+        List<String> ox_nums = new ArrayList<>(puzzleInput);
+        List<String> c2_nums = new ArrayList<>(puzzleInput);
 
         int index = 0;
-
-        while (oxygen.size() > 1) {
-            List<int[]> input = getCombinedList(oxygen);
-            ones = input.get(0);
-            zeros = input.get(1);
-            for (int i = oxygen.size() - 1; i >= 0; i--) {
-                String oxy = oxygen.get(i);
-                if (ones[index] >= zeros[index] && oxy.charAt(index) == '0') oxygen.remove(i);
-                else if (ones[index] < zeros[index] && oxy.charAt(index) == '1') oxygen.remove(i);
+        while(ox_nums.size() > 1)
+        {
+            List<int[]> newList = getList(ox_nums);
+            ones = newList.get(0);
+            zeros = newList.get(1);
+            for(int i = ox_nums.size() - 1; i >= 0; i--)
+            {
+                String oxyNum = ox_nums.get(i);
+                if(ones[index] >= zeros[index] && oxyNum.charAt(index) == '0')
+                    ox_nums.remove(i);
+                else if(ones[index] < zeros[index] && oxyNum.charAt(index) == '1')
+                    ox_nums.remove(i);
             }
             index++;
         }
 
         index = 0;
-
-        while(co2.size() > 1) {
-            List<int[]> input = getCombinedList(co2);
-            ones = input.get(0);
-            zeros = input.get(1);
-            for (int i = co2.size() - 1; i >= 0; i--) {
-                String cO2 = co2.get(i);
-                if (ones[index] >= zeros[index] && cO2.charAt(index) == '0') co2.remove(i);
-                else if (ones[index] < zeros[index] && cO2.charAt(index) == '1') co2.remove(i);
+        while(c2_nums.size() > 1)
+        {
+            List<int[]> newList = getList(c2_nums);
+            ones = newList.get(0);
+            zeros = newList.get(1);
+            for(int i = c2_nums.size() - 1; i >= 0; i--)
+            {
+                String co2Num = c2_nums.get(i);
+                if(ones[index] >= zeros[index] && co2Num.charAt(index) == '1')
+                    c2_nums.remove(i);
+                else if(ones[index] < zeros[index] && co2Num.charAt(index) == '0')
+                    c2_nums.remove(i);
             }
             index++;
         }
 
-        long oxyNum = Integer.parseInt(oxygen.get(0), 2);
-        long co2Num = Integer.parseInt(co2.get(0), 2);
-        sum = oxyNum * co2Num;
-        System.out.println("Day 3 Part 2: " + sum);
-
+        long oxyNum = Integer.parseInt(ox_nums.get(0), 2);
+        long co2Num = Integer.parseInt(c2_nums.get(0), 2);
+        System.out.println("Day 3 Part 2: " + (oxyNum * co2Num));
     }
 
-    private List<int[]> getCombinedList(List<String> input) {
-        int[] zeros = new int[input.get(0).length()];
+    public static List<int[]> getList(List<String> input)
+    {
         int[] ones = new int[input.get(0).length()];
-        for (String a : input) {
-            for (int i = 0; i < a.length(); i++) {
-                if (a.charAt(i) == '0') zeros[i]++;
+        int[] zeros = new int[input.get(0).length()];
+        for(String s : input)
+        {
+            for(int i = 0; i < s.length(); i++)
+            {
+                if(s.charAt(i) == '0') zeros[i]++;
                 else ones[i]++;
             }
         }
